@@ -1,44 +1,44 @@
 import SwiftUI
 
-
 struct AssetList: View {
     
-    @State var viewModel: AssetListViewModel = .init()
+    var viewModel: AssetListViewModel = .init()
+
+//    @State var task: Task<Void, Never>?
     
-    var body:some View {
-        NavigationStack{
+    var body: some View {
+        NavigationStack {
+            
             Text(viewModel.errorMessage ?? "")
-            List{
-                ForEach(viewModel.assets){ asset in
-                    NavigationLink{
-                        AssetDetailView(asset: asset)
+                
+            List {
+                ForEach(viewModel.assets) { asset in
+                    NavigationLink {
+                        AssetDetailView(viewModel: .init(asset: asset))
                     } label: {
-                        AssetView(asset: asset)
+                        AssetView(assetViewState: .init(asset))
                     }
                 }
             }
             .listStyle(.plain)
-            //       Button("Fetch assets"){
-            //          Task {
-            //              await viewModel.fetchAssets()
-            //         }
-            //     }
-            // .onAppear { //Aparece el componente
-            //}
-            //.onDisappear {
-            //***}
-            
             .task {
-                await viewModel.fetchAssets()
+               await viewModel.fetchAssets()
             }
+            .navigationTitle("Home")
             
         }
-        .navigationTitle("Home")
+       
+//        .onAppear {
+//            task = Task {
+//                await viewModel.fetchAssets()
+//            }
+//        }
+//        .onDisappear {
+//            task?.cancel()
+//        }
     }
 }
 
-#Preview{
-   AssetList()
+#Preview {
+    AssetList()
 }
-
- 

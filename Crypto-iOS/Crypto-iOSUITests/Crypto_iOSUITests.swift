@@ -5,6 +5,13 @@
 //  Created by user272757 on 4/11/25.
 //
 
+//
+//  Crypto_iOSUITests.swift
+//  Crypto-iOSUITests
+//
+//  Created by Sebastian on 12/04/2025.
+//
+
 import XCTest
 
 final class Crypto_iOSUITests: XCTestCase {
@@ -33,11 +40,9 @@ final class Crypto_iOSUITests: XCTestCase {
 
     @MainActor
     func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+        // This measures how long it takes to launch your application.
+        measure(metrics: [XCTApplicationLaunchMetric()]) {
+            XCUIApplication().launch()
         }
     }
 }
